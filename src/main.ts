@@ -2,10 +2,13 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import Eureka from 'eureka-js-client' 
+import { grpcClientOptions } from './grpc-client.options';
 // const Eureka = require('eureka-js-client').Eureka;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.connectMicroservice(grpcClientOptions);
+  // await app.startAllMicroservicesAsync();
 
   const options = new DocumentBuilder()
     .setTitle('Users example')
@@ -19,9 +22,9 @@ async function bootstrap() {
 
   const eurekaClient = new Eureka({
     instance: {
-      instanceId: 'nestjsService',
-      app: 'nestjsService',
-      hostName: 'localhost',
+      instanceId: 'demoservice',
+      app: 'demoservice',
+      hostName: '192.168.0.153',
       ipAddr: '192.168.0.153',
       statusPageUrl: 'http://192.168.0.153:4000/info',
       healthCheckUrl: 'http://192.168.0.153:4000/health',
@@ -29,7 +32,7 @@ async function bootstrap() {
         '$': 4000,
         '@enabled': true
       },
-      vipAddress: 'nestjsService',
+      vipAddress: 'demoservice',
       dataCenterInfo: {
         '@class': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo',
         name: 'MyOwn'
@@ -43,9 +46,8 @@ async function bootstrap() {
       servicePath: '/eureka/apps/'
       // serviceUrl: 'http://192.168.0.47:8000/eureka/apps/'
     },
-  })
-
-  eurekaClient.start((data) => console.log(data))
+  }) 
+  eurekaClient.start()
   await app.listen(4000);
 }
 bootstrap();

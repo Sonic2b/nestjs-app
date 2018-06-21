@@ -13,7 +13,8 @@ import {
   NotImplementedException,
   Logger,
   Query,
-  Inject
+  Inject,
+  OnModuleInit
 } from '@nestjs/common';
 import { UseFilters, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UsersService } from './users.service';
@@ -31,6 +32,14 @@ import { IUser } from './interfaces/user.interface';
 import { ApiUseTags, ApiResponse, ApiImplicitParam } from '@nestjs/swagger';
 import { SHARED_VALUE_PROVIDER } from '../constants';
 import { SharedClass } from '../shared/shared.providers'
+import { Client, ClientGrpc } from '@nestjs/microservices';
+import { grpcClientOptions } from 'grpc-client.options';
+import { Observable } from 'rxjs';
+
+interface IHeroService {
+  findOne(data: {id: number}): Observable<any>;
+}
+
 /**
  *
  *
@@ -42,14 +51,21 @@ import { SharedClass } from '../shared/shared.providers'
 @UseInterceptors(LoggingInterceptor)
 @UseInterceptors(TransformInterceptor)
 @UseGuards(RolesGuard)
-export class UsersController {
+export class UsersController implements OnModuleInit {
   private readonly logger: Logger = new Logger(UsersController.name)
+
+  @Client(grpcClientOptions) private readonly grpcClient: ClientGrpc;
+  private heroService: IHeroService;
+
   constructor(
     private readonly usersService: UsersService, 
     @Inject(SHARED_VALUE_PROVIDER) private sharedValue: string,
     private readonly sharedClass: SharedClass
   ) {}
 
+  onModuleInit() {
+    this.heroService = this.grpcClient.getService<IHeroService>('HeroService') 
+  }
   /**
    *
    *
@@ -61,13 +77,19 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get('/shared')
+  @Get('shared')
   getShared() {
     return {
       value: 'value',
       class: this.sharedClass.getEnv()
-
     }
+  }
+
+  @Get('grpc')
+  getHeroGrpc() {
+    this.logger.log('access hero grpc method')
+    console.log(this.heroService)
+    return this.heroService.findOne({id: 1})
   }
 
   @Get(':id')
