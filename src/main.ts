@@ -2,13 +2,10 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import Eureka from 'eureka-js-client' 
-import { grpcClientOptions } from './grpc-client.options';
 // const Eureka = require('eureka-js-client').Eureka;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.connectMicroservice(grpcClientOptions);
-  // await app.startAllMicroservicesAsync();
 
   const options = new DocumentBuilder()
     .setTitle('Users example')
@@ -47,7 +44,7 @@ async function bootstrap() {
       // serviceUrl: 'http://192.168.0.47:8000/eureka/apps/'
     },
   }) 
-  eurekaClient.start()
+  // eurekaClient.start()
   await app.listen(4000);
 }
 bootstrap();
