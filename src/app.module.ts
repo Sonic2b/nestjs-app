@@ -12,11 +12,13 @@ import { LoggingInterceptor, TransformInterceptor } from './common/interceptor';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EurekaController } from './eureka.controller';
 import { HeroModule } from 'hero/hero.module';
+import { AuthModule } from 'auth/auth.module';
 
 @Module({
   imports: [
     UserModule,
     HeroModule,
+    AuthModule,
     // MongooseModule.forRoot('mongodb://localhost:27017/nest'),
   ],
   controllers: [EurekaController],

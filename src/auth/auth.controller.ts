@@ -15,5 +15,7 @@ export class AuthController {
 
   @Get('data')
   @UseGuards(AuthGuard('jwt'))
-  findAll() {}
+  findAll() {
+    return [{ name: 'jack', age: 1 }];
+  }
 }

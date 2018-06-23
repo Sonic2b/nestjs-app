@@ -76,7 +76,17 @@
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
-    "coverageDirectory": "../coverage"
+    "coverageDirectory": "../coverage",
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    },
+    "collectCoverageFrom": [
+      "test/*.{js,jsx,tsx,ts}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ]
   },
   "extends": [
     "tslint:latest",

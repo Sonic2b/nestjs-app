@@ -5,7 +5,7 @@ import { JwtPayload } from './interfaces/jwt-payload.interface';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UsersService) {}
+  constructor() {}
 
   async createToken() {
     const user: JwtPayload = { email: 'test@email.com' };
