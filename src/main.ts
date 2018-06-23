@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import Eureka from 'eureka-js-client' 
+import Eureka from 'eureka-js-client';
 // const Eureka = require('eureka-js-client').Eureka;
 
 async function bootstrap() {
@@ -26,24 +26,24 @@ async function bootstrap() {
       statusPageUrl: 'http://192.168.0.153:4000/info',
       healthCheckUrl: 'http://192.168.0.153:4000/health',
       port: {
-        '$': 4000,
-        '@enabled': true
+        $: 4000,
+        '@enabled': true,
       },
       vipAddress: 'demoservice',
       dataCenterInfo: {
         '@class': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo',
-        name: 'MyOwn'
-      }
+        name: 'MyOwn',
+      },
     },
     eureka: {
       // eureka server host / port
       fetchRegistry: false,
       host: '192.168.0.47',
       port: 8000,
-      servicePath: '/eureka/apps/'
+      servicePath: '/eureka/apps/',
       // serviceUrl: 'http://192.168.0.47:8000/eureka/apps/'
     },
-  }) 
+  });
   // eurekaClient.start()
   await app.listen(4000);
 }

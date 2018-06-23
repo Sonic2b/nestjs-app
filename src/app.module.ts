@@ -16,7 +16,7 @@ import { HeroModule } from 'hero/hero.module';
 @Module({
   imports: [
     UserModule,
-    HeroModule
+    HeroModule,
     // MongooseModule.forRoot('mongodb://localhost:27017/nest'),
   ],
   controllers: [EurekaController],

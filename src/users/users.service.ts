@@ -6,10 +6,10 @@ import { CreateUserDto, UpdateUserDto } from './dto';
 
 @Injectable()
 export class UsersService {
-  private readonly logger: Logger = new Logger(UsersService.name)
+  private readonly logger: Logger = new Logger(UsersService.name);
   // constructor(@InjectModel('User') private readonly userModel: Model<IUser>) {}
   constructor(
-    @Inject('UserModelToken') private readonly userModel: Model<IUser>
+    @Inject('UserModelToken') private readonly userModel: Model<IUser>,
   ) {}
 
   async findAll(): Promise<IUser[]> {
@@ -27,7 +27,7 @@ export class UsersService {
   }
 
   async findOne(id: string): Promise<IUser> {
-    this.logger.log(`find one ${id}`)
+    this.logger.log(`find one ${id}`);
     return await this.userModel.findById(id);
   }
 

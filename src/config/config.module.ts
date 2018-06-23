@@ -3,8 +3,6 @@ import { Module, Global } from '@nestjs/common';
 @Global()
 @Module({
   imports: [],
-  providers: []
+  providers: [],
 })
-export class ConfigModule {
-
-}
+export class ConfigModule {}

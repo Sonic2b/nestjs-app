@@ -1,5 +1,5 @@
 export const ConfigProviders = [
   {
-    provider: ''
-  }
-]
+    provider: '',
+  },
+];

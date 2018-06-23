@@ -14,7 +14,7 @@ import {
   Logger,
   Query,
   Inject,
-  OnModuleInit
+  OnModuleInit,
 } from '@nestjs/common';
 import { UseFilters, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UsersService } from './users.service';
@@ -31,12 +31,12 @@ import {
 import { IUser } from './interfaces/user.interface';
 import { ApiUseTags, ApiResponse, ApiImplicitParam } from '@nestjs/swagger';
 import { SHARED_VALUE_PROVIDER } from '../constants';
-import { SharedClass } from '../shared/shared.providers'
+import { SharedClass } from '../shared/shared.providers';
 import { Client, ClientGrpc } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 
 interface IHeroService {
-  findOne(data: {id: number}): Observable<any>;
+  findOne(data: { id: number }): Observable<any>;
 }
 
 /**
@@ -51,12 +51,12 @@ interface IHeroService {
 @UseInterceptors(TransformInterceptor)
 @UseGuards(RolesGuard)
 export class UsersController {
-  private readonly logger: Logger = new Logger(UsersController.name)
+  private readonly logger: Logger = new Logger(UsersController.name);
 
   constructor(
-    private readonly usersService: UsersService, 
+    private readonly usersService: UsersService,
     @Inject(SHARED_VALUE_PROVIDER) private sharedValue: string,
-    private readonly sharedClass: SharedClass
+    private readonly sharedClass: SharedClass,
   ) {}
 
   /**
@@ -74,8 +74,8 @@ export class UsersController {
   getShared() {
     return {
       value: 'value',
-      class: this.sharedClass.getEnv()
-    }
+      class: this.sharedClass.getEnv(),
+    };
   }
 
   @Get(':id')
@@ -92,7 +92,7 @@ export class UsersController {
   })
   findOne(@Param('id') id, @Query('space') space): Promise<IUser> {
     this.logger.log(`${id} space: ${space}`);
-    this.logger.log(`shared value: ${this.sharedValue}`)
+    this.logger.log(`shared value: ${this.sharedValue}`);
     return this.usersService.findOne(id);
   }
 
@@ -129,5 +129,4 @@ export class UsersController {
     // throw new Error('Not implemented')
     return this.usersService.delete(id);
   }
-
 }

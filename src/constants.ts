@@ -1,1 +1,1 @@
-export const SHARED_VALUE_PROVIDER = 'sharedValueProviders'
+export const SHARED_VALUE_PROVIDER = 'sharedValueProviders';

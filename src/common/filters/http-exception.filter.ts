@@ -2,7 +2,7 @@ import { ExceptionFilter, ArgumentsHost, Catch, Logger } from '@nestjs/common';
 import { HttpException } from '@nestjs/common';
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
-  private readonly logger: Logger = new Logger(HttpExceptionFilter.name)
+  private readonly logger: Logger = new Logger(HttpExceptionFilter.name);
   catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const request = ctx.getRequest();
