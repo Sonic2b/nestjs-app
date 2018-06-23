@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, UseGuards, Inject } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiUseTags } from '@nestjs/swagger';
@@ -6,7 +6,9 @@ import { ApiUseTags } from '@nestjs/swagger';
 @ApiUseTags('auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService, // @Inject('Redis') private readonly redisClient
+  ) {}
 
   @Get('token')
   async createToken(): Promise<any> {
