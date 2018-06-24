@@ -45,3 +45,8 @@ $ npm run format
 # tslint rules check
 $ npm run tslint-check
 ```
+## GRPC DEMO
+
+- Another project `nestjs-grpc` is GRPC server
+- `hero` in this project is GRPC client.
+  - request /hero/:id to get the response from grpc server
