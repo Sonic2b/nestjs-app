@@ -13,7 +13,7 @@ export const databaseProviders = [
         config.get('mongodb.url'),
         err => {
           if (!err) {
-            logger.warn('MongoDB connected');
+            logger.log('MongoDB connected');
           }
         },
       ),
@@ -23,7 +23,7 @@ export const databaseProviders = [
     useFactory: () => {
       const client = redis.createClient(config.get('redis.url'));
       client.on('connect', () => {
-        logger.error('Redis connected');
+        logger.log('Redis connected');
       });
       return client;
     },

@@ -1,21 +1,8 @@
-import {
-  Get,
-  Post,
-  Put,
-  Delete,
-  Patch,
-  Param,
-  Body,
-  Controller,
-  HttpCode,
-  HttpException,
-  HttpStatus,
-  NotImplementedException,
-  Logger,
-  Query,
-  Inject,
-  OnModuleInit,
-} from '@nestjs/common';
+import { Get, Post, Put, Delete, Patch } from '@nestjs/common';
+import { Param, Query, Body } from '@nestjs/common';
+import { Logger, Inject, Controller } from '@nestjs/common';
+import { NotImplementedException } from '@nestjs/common';
+import { HttpCode, HttpException, HttpStatus } from '@nestjs/common';
 import { UseFilters, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto, UpdateUserDto } from './dto';
@@ -24,17 +11,11 @@ import { ValidationPipe, ParseIntPipe } from '../common/pipes';
 import { RolesGuard } from '../common/guards';
 import { Roles } from '../common/decorators/roles.decorator';
 import {
-  LoggingInterceptor,
   TransformInterceptor,
   ErrorsInterceptor,
 } from '../common/interceptors';
 import { IUser } from './interfaces/user.interface';
 import { ApiUseTags, ApiResponse, ApiImplicitParam } from '@nestjs/swagger';
-import { Observable } from 'rxjs';
-
-interface IHeroService {
-  findOne(data: { id: number }): Observable<any>;
-}
 
 /**
  *
@@ -44,7 +25,6 @@ interface IHeroService {
  */
 @ApiUseTags('users')
 @Controller('users')
-@UseInterceptors(LoggingInterceptor)
 @UseInterceptors(TransformInterceptor)
 @UseGuards(RolesGuard)
 export class UsersController {
