@@ -5,11 +5,13 @@ import {
   MiddlewareConsumer,
 } from '@nestjs/common';
 import { UserModule } from './users/users.module';
-import { LoggerMiddleware } from './common/middleware';
+import { LoggerMiddleware } from './common/middlewares';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { RolesGuard } from './common/guards';
-import { LoggingInterceptor, TransformInterceptor } from './common/interceptor';
-import { MongooseModule } from '@nestjs/mongoose';
+import {
+  LoggingInterceptor,
+  TransformInterceptor,
+} from './common/interceptors';
 import { EurekaController } from './eureka.controller';
 import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';

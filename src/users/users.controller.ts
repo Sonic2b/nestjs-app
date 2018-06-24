@@ -20,14 +20,14 @@ import { UseFilters, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto, UpdateUserDto } from './dto';
 import { HttpExceptionFilter } from '../common/filters';
-import { ValidationPipe, ParseIntPipe } from '../common/pipe';
+import { ValidationPipe, ParseIntPipe } from '../common/pipes';
 import { RolesGuard } from '../common/guards';
-import { Roles } from '../common/decorator/roles.decorator';
+import { Roles } from '../common/decorators/roles.decorator';
 import {
   LoggingInterceptor,
   TransformInterceptor,
   ErrorsInterceptor,
-} from '../common/interceptor';
+} from '../common/interceptors';
 import { IUser } from './interfaces/user.interface';
 import { ApiUseTags, ApiResponse, ApiImplicitParam } from '@nestjs/swagger';
 import { Observable } from 'rxjs';

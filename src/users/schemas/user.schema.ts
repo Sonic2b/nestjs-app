@@ -16,6 +16,6 @@ export const UserSchema = new mongoose.Schema(
     timestamps: {
       createdAt: 'created_at',
       updatedAt: 'updated_at',
-    }
-  }
+    },
+  },
 );

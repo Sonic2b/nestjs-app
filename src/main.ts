@@ -1,11 +1,14 @@
+import { LoggerService } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import Eureka from 'eureka-js-client';
 // const Eureka = require('eureka-js-client').Eureka;
-
+import { OtcexLoggerService } from './common/services/otcex-logger.service';
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: new OtcexLoggerService(),
+  });
 
   const options = new DocumentBuilder()
     .setTitle('Users example')

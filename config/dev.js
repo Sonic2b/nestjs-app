@@ -1,6 +1,6 @@
 module.exports = {
   env: process.env.NODE_ENV,
   redis: {
-    url: 'redis://localhost:27017',
+    url: 'redis://localhost:27017'
   }
 }

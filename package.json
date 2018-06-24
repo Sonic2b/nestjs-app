@@ -30,6 +30,7 @@
     "@types/mongoose": "^5.0.18",
     "@types/redis": "^2.8.6",
     "bcryptjs": "^2.4.3",
+    "chalk": "^2.4.1",
     "class-transformer": "^0.1.9",
     "class-validator": "^0.8.5",
     "config": "^1.30.0",
@@ -46,7 +47,8 @@
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.0.0",
     "typeorm": "^0.2.7",
-    "typescript": "^2.6.2"
+    "typescript": "^2.6.2",
+    "winston": "^3.0.0"
   },
   "devDependencies": {
     "@nestjs/testing": "^5.0.1",

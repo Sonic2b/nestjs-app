@@ -10,5 +10,7 @@
   "swagger": {
     "title": "Demo API",
     "description": ""
-  }
+  },
+  "logger": {
+  } 
 }
