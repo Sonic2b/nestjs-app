@@ -1,6 +1,6 @@
 import * as redis from 'redis';
 import * as mongoose from 'mongoose';
-import { MONGODB_CONNECTION, REDIS_CONNECTION } from '../constants'
+import { MONGODB_CONNECTION, REDIS_CONNECTION } from '../constants';
 export const databaseProviders = [
   {
     provide: MONGODB_CONNECTION,
@@ -15,7 +15,6 @@ export const databaseProviders = [
         console.log('connected redis successfully');
       });
       return client;
-    }
+    },
   },
-]
-
+];

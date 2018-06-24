@@ -19,7 +19,7 @@ import { DatabaseModule } from './database/database.module';
     UserModule,
     HeroModule,
     AuthModule,
-    DatabaseModule
+    DatabaseModule,
     // RedisModule
     // MongooseModule.forRoot('mongodb://localhost:27017/nest'),
   ],

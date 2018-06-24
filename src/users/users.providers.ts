@@ -1,6 +1,6 @@
 import { Connection } from 'mongoose';
-import { UserSchema } from './schemas/user.schema'; 
- import { MONGODB_CONNECTION } from '../constants'
+import { UserSchema } from './schemas/user.schema';
+import { MONGODB_CONNECTION } from '../constants';
 export const usersProviders = [
   {
     provide: 'UserModelToken',
