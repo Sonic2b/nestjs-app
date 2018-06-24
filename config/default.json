@@ -1,0 +1,9 @@
+{
+  "app": "nestjs-app-demo",
+  "redis": {
+    "url": "redis://localhost:27017"
+  },
+  "mongodb": {
+    "url": "mongodb://localhost:27017/nest"
+  }
+}

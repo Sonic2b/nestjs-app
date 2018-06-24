@@ -6,7 +6,6 @@ import {
 } from '@nestjs/common';
 import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
-
 @Injectable()
 export class ValidationPipe implements PipeTransform {
   async transform(value, metadata: ArgumentMetadata) {
@@ -22,6 +21,7 @@ export class ValidationPipe implements PipeTransform {
     console.log('[pipe:validation] object: ', object);
     const errors = await validate(object);
     if (errors.length > 0) {
+      console.error(errors)
       throw new BadRequestException('Validation failed');
     }
     return value;

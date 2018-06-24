@@ -30,9 +30,6 @@ import {
 } from '../common/interceptor';
 import { IUser } from './interfaces/user.interface';
 import { ApiUseTags, ApiResponse, ApiImplicitParam } from '@nestjs/swagger';
-import { SHARED_VALUE_PROVIDER } from '../constants';
-import { SharedClass } from '../shared/shared.providers';
-import { Client, ClientGrpc } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 
 interface IHeroService {
@@ -55,8 +52,6 @@ export class UsersController {
 
   constructor(
     private readonly usersService: UsersService,
-    @Inject(SHARED_VALUE_PROVIDER) private sharedValue: string,
-    private readonly sharedClass: SharedClass,
   ) {}
 
   /**
@@ -68,14 +63,6 @@ export class UsersController {
   @Get()
   findAll(): Promise<IUser[]> {
     return this.usersService.findAll();
-  }
-
-  @Get('shared')
-  getShared() {
-    return {
-      value: 'value',
-      class: this.sharedClass.getEnv(),
-    };
   }
 
   @Get(':id')
@@ -90,9 +77,7 @@ export class UsersController {
     status: 200,
     description: 'The record has been successfully created',
   })
-  findOne(@Param('id') id, @Query('space') space): Promise<IUser> {
-    this.logger.log(`${id} space: ${space}`);
-    this.logger.log(`shared value: ${this.sharedValue}`);
+  findOne(@Param('id') id): Promise<IUser> {
     return this.usersService.findOne(id);
   }
 
@@ -102,7 +87,6 @@ export class UsersController {
     @Body(new ValidationPipe())
     createUserDto: CreateUserDto,
   ): Promise<IUser> {
-    // this.logger.log('[controller:user] create')//, createUserDto);
     return this.usersService.create(createUserDto);
   }
 
