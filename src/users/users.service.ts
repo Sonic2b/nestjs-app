@@ -3,7 +3,7 @@ import { Injectable, Inject, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { IUser } from './interfaces/user.interface';
 import { CreateUserDto, UpdateUserDto } from './dto';
-import * as bcrypt from 'bcryptjs'
+import * as bcrypt from 'bcryptjs';
 @Injectable()
 export class UsersService {
   private readonly logger: Logger = new Logger(UsersService.name);
@@ -17,8 +17,8 @@ export class UsersService {
   }
 
   async create(createUserDto: CreateUserDto): Promise<IUser> {
-    const hash = bcrypt.hashSync(createUserDto.password, 10) 
-    const createUser = new this.userModel({...createUserDto, password: hash});
+    const hash = bcrypt.hashSync(createUserDto.password, 10);
+    const createUser = new this.userModel({ ...createUserDto, password: hash });
     return await createUser.save();
   }
 
@@ -27,13 +27,13 @@ export class UsersService {
   }
 
   async findOne(id: string): Promise<IUser> {
-    let user = await this.userModel.findById(id).exec()
-    const valid = bcrypt.compareSync('19842895', user.password)
-    console.log('>>>>>>>>>>>> valid: ', valid)
-    return user 
+    let user = await this.userModel.findById(id).exec();
+    const valid = bcrypt.compareSync('19842895', user.password);
+    console.log('>>>>>>>>>>>> valid: ', valid);
+    return user;
   }
 
   async delete(id: string): Promise<{}> {
-    return await this.userModel.remove({_id: id})
+    return await this.userModel.remove({ _id: id });
   }
 }

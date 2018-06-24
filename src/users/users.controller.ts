@@ -50,9 +50,7 @@ interface IHeroService {
 export class UsersController {
   private readonly logger: Logger = new Logger(UsersController.name);
 
-  constructor(
-    private readonly usersService: UsersService,
-  ) {}
+  constructor(private readonly usersService: UsersService) {}
 
   /**
    *

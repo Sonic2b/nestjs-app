@@ -6,7 +6,7 @@ export class CreateUserDto {
   @IsOptional()
   @ValidateIf(o => !o.phone || !o.email)
   readonly phone: string;
-  
+
   @ApiModelProperty({ required: false })
   @IsString()
   @IsOptional()
