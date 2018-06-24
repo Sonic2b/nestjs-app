@@ -26,6 +26,7 @@
     "@nestjs/swagger": "^2.0.2",
     "@nestjs/typeorm": "^5.0.0",
     "@nestjs/websockets": "^5.0.0",
+    "@types/redis": "^2.8.6",
     "class-transformer": "^0.1.9",
     "class-validator": "^0.8.5",
     "eureka-js-client": "^4.4.1",

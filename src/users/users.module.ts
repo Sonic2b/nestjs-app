@@ -8,7 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 @Module({
   imports: [
     // MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])
-    DatabaseModule,
+    // DatabaseModule,
     SharedModule,
   ],
   controllers: [UsersController],

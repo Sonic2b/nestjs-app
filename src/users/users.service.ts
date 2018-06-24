@@ -10,11 +10,9 @@ export class UsersService {
   // constructor(@InjectModel('User') private readonly userModel: Model<IUser>) {}
   constructor(
     @Inject('UserModelToken') private readonly userModel: Model<IUser>,
-    @Inject('RedisConnection') private readonly redisClient
   ) {}
 
   async findAll(): Promise<IUser[]> {
-    this.redisClient.set('test', JSON.stringify({token: 'hello world'}))
     return await this.userModel.find().exec();
   }
 
