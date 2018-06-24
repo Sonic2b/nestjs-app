@@ -11,13 +11,11 @@ import { RolesGuard } from './common/guards';
 import { LoggingInterceptor, TransformInterceptor } from './common/interceptor';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EurekaController } from './eureka.controller';
-import { HeroModule } from './hero/hero.module';
 import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
 @Module({
   imports: [
     UserModule,
-    HeroModule,
     AuthModule,
     DatabaseModule,
     // RedisModule
