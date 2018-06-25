@@ -6,15 +6,11 @@ import {
 } from '@nestjs/common';
 import { UserModule } from './users/users.module';
 import { LoggerMiddleware } from './common/middlewares';
-import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
-import { RolesGuard } from './common/guards';
-import {
-  LoggingInterceptor,
-  TransformInterceptor,
-} from './common/interceptors';
-import { EurekaController } from './eureka.controller';
+import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
+import { RolesGuard } from './common/guards';
 @Module({
   imports: [
     UserModule,
@@ -23,7 +19,7 @@ import { DatabaseModule } from './database/database.module';
     // RedisModule
     // MongooseModule.forRoot('mongodb://localhost:27017/nest'),
   ],
-  controllers: [EurekaController],
+  controllers: [AppController],
   providers: [
     // {
     //   provide: APP_GUARD,

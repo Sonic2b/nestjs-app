@@ -27,7 +27,7 @@ export class UsersService {
   }
 
   async findOne(id: string): Promise<IUser> {
-    let user = await this.userModel.findById(id).exec();
+    const user = await this.userModel.findById(id).exec();
     const valid = bcrypt.compareSync('19842895', user.password);
     console.log('>>>>>>>>>>>> valid: ', valid);
     return user;

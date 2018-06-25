@@ -1,15 +1,9 @@
-import {
-  Get,
-  Controller,
-  HttpException,
-  HttpStatus,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Get, Controller, UseInterceptors } from '@nestjs/common';
 import { ErrorsInterceptor } from './common/interceptors';
 
 @UseInterceptors(ErrorsInterceptor)
 @Controller()
-export class EurekaController {
+export class AppController {
   @Get('health')
   health() {
     return {
@@ -22,10 +16,5 @@ export class EurekaController {
     return {
       status: 'UP',
     };
-  }
-
-  @Get('demo')
-  demo() {
-    throw new HttpException('Exception Demo', HttpStatus.BAD_REQUEST);
   }
 }
